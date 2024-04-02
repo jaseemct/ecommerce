@@ -1,0 +1,49 @@
+{% extends 'admin_home.html' %}
+{% block content%}
+
+    <div class="container mt-4 mb-5 w-100" id="container">
+        <div class="card">
+            <div class="card-header text-white text-center" style="background-color: black; border-radius: 5px 5px 0px 0px;">
+                <h2>ALL PRODUCTS</h2>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped mb-0" style="border-radius: 0px 10px 10px 0px;">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Catagory</th>
+                                <th scope="col">Image</th>
+                                <th scope="col" class="table-actions">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background-color: black; color:white;">
+                            {% for p in product %}
+                            <tr>
+                                <td>{{ p.product_name }}</td>
+                                <td>{{ p.description }}</td>
+                                <td>{{ p.price }}</td>
+                                <td>{{ p.category.category_name }}</td>
+                                <td class="p-0">
+                                    <img src="{{p.image.url}}" alt="" style="width: 90px; height:105px;" class="p-0">
+                                </td>
+
+                                
+                                
+                                <td>
+                                    
+                                    <button class="btn btn-danger btn-sm"><a href="{% url 'delete' p.id %}" class="bg-danger text-white"  style="text-decoration:none;">DELETE</a></button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content%}
+</body>
+</html>

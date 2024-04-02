@@ -1,0 +1,55 @@
+{% extends 'home.html' %}
+{% block content %}
+    <style>
+        body {
+            background-color: #000000; /* black background color */
+            color: #ffffff; /* white text color */
+            padding: 20px; /* add some padding */
+        }
+        header {
+            text-align: center; /* center-align header text */
+            margin-bottom: 20px; /* add some space below header */
+        }
+        footer {
+            margin-top: 20px; /* add some space above footer */
+        }
+        form {
+            max-width: 400px; /* limit form width */
+            margin: auto; /* center form */
+        }
+        label {
+            font-weight: bold; /* make labels bold */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Login</h1>
+    </header>
+    {% for message in messages %}
+    <h6>
+      <div class="container  text-white text-center" style="background-color: black;">
+        {{message}}
+  
+    </h6>
+    {% endfor %}
+    <form action="{% url 'adminlogin' %}" method="post" class="bg-dark text-white p-4 rounded">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+    </form>
+    <div class="text-center">
+        <p>Don't have an account yet? <a href="{%url 'signup1' %}">Sign Up</a></p>
+    </div>
+    {% endblock content %}
+</body>
+</html>

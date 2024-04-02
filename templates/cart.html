@@ -1,0 +1,40 @@
+{% extends 'user_home.html' %}
+{% block content %}
+<div class="container bg-dark text-white" style="margin-top: 70px; border-radius:30px;">
+    <h1 class="cart-heading text-center text-white">My Cart</h1>
+    <div class="table-responsive" >
+        <table class="table table-bordered" >
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cartitems %}
+                <tr>
+                    <td><img src="{{ item.product.image.url }}" alt="{{ item.product.product_name }}" class="product-image" style="width: 100px; padding:0px;"></td>
+                    <td>{{ item.product.product_name }}</td>
+                    <td>{{ item.product.description }}</td>
+                    <td>
+                        <a href="{% url 'decrease_quantity' item.product.id %}" class="btn btn-sm btn-primary">-</a>
+                        {{ item.quantity }}
+                        <a href="{% url 'increase_quantity' item.product.id %}" class="btn btn-sm btn-primary ">+</a>
+                    </td>
+                    <td><a href="{% url 'remove_cart' item.product.id %}" class="btn btn-sm btn-danger remove-btn">Remove</a></td>
+                    <td class="total-price">&#8377;{{item.total_price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="containert mb-5 d-flex justify-content-center bg-secondary" style=" border-radius:30px;">
+        <h4 class="text-white">Total: <span class="total-price">&#8377;{{ totalprice }}</span><br>
+        <button class="btn btn-primary checkout-btn" style="border-radius: 20px;">Buy Now</button>
+    </div>
+</div>
+{% endblock content %}

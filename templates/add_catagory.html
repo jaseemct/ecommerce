@@ -1,0 +1,31 @@
+{% extends 'admin_home.html' %}
+{% block content%}
+<style>
+    .container{
+        margin-top: 100px;
+        background-color: black;
+        border: 1px solid white;
+        border-radius: 10px;
+        padding: 10px;
+    }
+</style>
+    <div class="container  w-75 " id="container">
+        <h1 class="mb-4 text-center text-white">ADD CATEGORY</h1>
+        <div class="card" style="background-color: black;">
+           
+            <div class="card-body my-5 " style="background-color: black;">
+                <form method="post" action="{% url 'add_catagory' %}" >
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control text-center" placeholder="Enter Brand Name" name="catagory">
+                    </div>
+                   
+                    <button type="submit" class="btn btn-primary w-100 my-3">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% endblock content%}
+</body>
+</html>

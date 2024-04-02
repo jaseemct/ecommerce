@@ -1,0 +1,42 @@
+{% extends 'user_home.html' %}
+{% block content %}
+
+<style>
+    .card-container {
+        display: flex; /* Use flexbox */
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: space-between; /* Distribute space between cards */
+    }
+
+    .card{
+        background-color: black;
+        color: white;
+        border: 3px solid white;
+        border-radius: 20px;
+        width: calc(33.33% - 20px); 
+        margin-bottom: 20px; 
+        margin-left: 10px;
+    }
+    #img{
+      border-radius: 15px 15px 0px 0px;
+    }
+</style>
+
+<div class="card-container mb-5 mt-5">
+    {% for product in products %}
+    <div class="card" style="width: 300px;">
+        <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap" style="height: 250px;" id="img">
+        <div class="card-body">
+            <h5 class="card-title">{{product.product_name}}</h5>
+            <p class="card-text">
+                Specification: <br>
+                {{product.description}}
+            </p>
+            <h5 class="card-title">RS:{{product.price}}</h5>
+            <a href="{% url 'cart_details' product.id %}" class="btn btn-primary">Add to Cart</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

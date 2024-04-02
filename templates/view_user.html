@@ -1,0 +1,49 @@
+{% extends 'admin_home.html' %}
+{% block content %}
+
+    <div class="container  mb-5 w-100" id="container">
+        <div class="card">
+            <div class="card-header text-white text-center" style="background-color: black; border-radius: 5px 5px 0px 0px;">
+                <h2>USERS DETAILS</h2>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped mb-0" style="border-radius: 0px 10px 10px 0px;">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">User Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Mobile Number</th>
+                                <th scope="col">Image</th>
+                                <th scope="col" class="table-actions">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for u in user %}
+                            <tr>
+                                
+                                <td>{{ u.user.username }}</td>
+                                <td>{{u.user.email}}</td>
+                                <td>{{ u.address }}</td>
+                                <td>{{ u.contact_number }}</td>
+                                <td class="p-0">
+                                    {% if u.image %}
+                                        <img src="{{ u.image.url }}" alt="" class="rounded-circle" style="width: 90px; height: 90px;">
+                                    {% else %}
+                                        <p>No image available</p>
+                                    {% endif %}
+                                </td>
+                                <td button class="btn btn-danger btn-sm mt-3"><a href="{% url 'delete_user' u.user_id %}" class="bg-danger text-white"  style="text-decoration:none;">DELETE</a></button>  </td>
+                                 
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+</body>
+</html>
